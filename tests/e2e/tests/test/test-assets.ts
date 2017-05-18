@@ -19,7 +19,7 @@ export default function () {
       // Not using `async()` in tests as it seemed to swallow `fetch()` errors
       'src/app/app.component.spec.ts': stripIndent`
         describe('Test Runner', () => {
-          const fetch = global['fetch'];
+          const fetch = window['fetch'];
           it('should serve files in assets folder', (done) => {
             fetch('/assets/file.txt')
               .then(response => response.text())

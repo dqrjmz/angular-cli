@@ -117,7 +117,7 @@ export function getCommonConfig(wco: WebpackConfigOptions) {
     ].concat(extraPlugins),
     node: {
       fs: 'empty',
-      global: true,
+      global: false,
       crypto: 'empty',
       tls: 'empty',
       net: 'empty',

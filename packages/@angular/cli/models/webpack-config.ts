@@ -90,7 +90,8 @@ export class NgCliWebpackConfig {
         outputHashing: 'all',
         sourcemaps: false,
         extractCss: true,
-        aot: true
+        aot: true,
+        vendorChunk: false
       }
     };
 
