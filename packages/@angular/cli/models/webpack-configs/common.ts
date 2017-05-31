@@ -17,6 +17,7 @@ const ProgressPlugin = require('webpack/lib/ProgressPlugin');
  * require('json-loader')
  * require('url-loader')
  * require('file-loader')
+ * require('ngo-loader')
  */
 
 export function getCommonConfig(wco: WebpackConfigOptions) {
@@ -70,6 +71,16 @@ export function getCommonConfig(wco: WebpackConfigOptions) {
       fallbackModuleFilenameTemplate: '[resource-path]?[hash]',
       sourceRoot: 'webpack:///'
     }));
+  }
+
+  if (buildOptions.ngo) {
+    extraRules.push({
+      test: /\.js$/,
+      use: [{
+        loader: 'ngo-loader',
+        options: { sourceMap: buildOptions.sourcemaps }
+      }]
+    });
   }
 
   return {

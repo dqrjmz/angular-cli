@@ -7,6 +7,7 @@ import { StaticAssetPlugin } from '../../plugins/static-asset';
 import { GlobCopyWebpackPlugin } from '../../plugins/glob-copy-webpack-plugin';
 import { WebpackConfigOptions } from '../webpack-config';
 
+const PurifyPlugin = require('ngo-loader').PurifyPlugin;
 const licensePlugin = require('license-webpack-plugin');
 
 export const getProdConfig = function (wco: WebpackConfigOptions) {
@@ -87,6 +88,10 @@ export const getProdConfig = function (wco: WebpackConfigOptions) {
     }));
   }
 
+  if (buildOptions.ngo) {
+    extraPlugins.push(new PurifyPlugin());
+  }
+
   return {
     entry: entryPoints,
     plugins: [
@@ -96,7 +101,7 @@ export const getProdConfig = function (wco: WebpackConfigOptions) {
       new (<any>webpack).HashedModuleIdsPlugin(),
       new webpack.optimize.UglifyJsPlugin(<any>{
         mangle: { screw_ie8: true },
-        compress: { screw_ie8: true, warnings: buildOptions.verbose },
+        compress: { screw_ie8: true, warnings: buildOptions.verbose, pure_getters: true },
         sourceMap: buildOptions.sourcemaps,
         comments: false
       })

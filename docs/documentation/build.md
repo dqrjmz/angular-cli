@@ -302,3 +302,13 @@ Note: service worker support is experimental and subject to change.
     Run build when files change.
   </p>
 </details>
+
+<details>
+  <summary>ngo</summary>
+  <p>
+    <code>--ngo</code>
+  </p>
+  <p>
+    Enables NGO optimizations when using `--aot`.
+  </p>
+</details>
