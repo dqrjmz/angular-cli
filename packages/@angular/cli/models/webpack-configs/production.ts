@@ -89,12 +89,13 @@ export const getProdConfig = function (wco: WebpackConfigOptions) {
   }
 
   if (buildOptions.ngo) {
+    // This plugin must be before webpack.optimize.UglifyJsPlugin.
     extraPlugins.push(new PurifyPlugin());
   }
 
   return {
     entry: entryPoints,
-    plugins: [
+    plugins: extraPlugins.concat([
       new webpack.EnvironmentPlugin({
         'NODE_ENV': 'production'
       }),
@@ -106,6 +107,6 @@ export const getProdConfig = function (wco: WebpackConfigOptions) {
         sourceMap: buildOptions.sourcemaps,
         comments: false
       })
-    ].concat(extraPlugins)
+    ])
   };
 };
