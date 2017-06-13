@@ -43,7 +43,6 @@ export const baseBuildCommandOptions: any = [
   {
     name: 'vendor-chunk',
     type: Boolean,
-    default: true,
     aliases: ['vc'],
     description: 'Use a separate bundle containing only vendor libraries.'
   },
